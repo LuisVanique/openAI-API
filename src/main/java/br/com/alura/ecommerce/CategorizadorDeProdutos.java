@@ -30,11 +30,17 @@ public class CategorizadorDeProdutos {
                     Resposta: Esportes
                     
                     #### Regras a serem seguidas:
-                    Caso o usuario pergunte algo que nao seja de categorização de produtos, 
+                    1. Caso o usuario pergunte algo que nao seja de categorização de produtos, 
                     voce deve responder que não pode ajudar pois o seu papel é apenas responder a categoria dos produtos
+                     
+                    2. Deve finalizar o programa quando o usuario escrever "sair" na etapa de Digitar o Nome do produto
                     """.formatted(categorias);
 
             dispararRequisicao(user, system);
+
+            if(user.equals("sair")){
+                break;
+            }
         }
 
     }
@@ -56,6 +62,5 @@ public class CategorizadorDeProdutos {
         var futureChat = openAI.chatCompletions().create(chatRequest);
         var chatResponse = futureChat.join().getChoices();
         chatResponse.forEach(c -> System.out.println(c.getMessage().getContent()));
-
     }
 }
